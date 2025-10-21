@@ -370,8 +370,18 @@ El fichero ``iceRiver.RData`` contiene información del caudal de dos ríos isla
   * Almacena en formato **pdf** el gráfico resultante en un fichero denominado ``Ejercicio5.pdf``.
 
 ```{r Solucion ejercicio 6 }
+rm(list=ls())
 
+load("./data/iceRiver.RData")
+?tseries::ice.river
 
+ggplot(ice.river.df)+geom_line(aes(x = time, y = flow.vat, color = "Vatnsdalsa"))+geom_line(aes(x = time, y = flow.jok, color = "Jokulsa Eystri"))+scale_color_manual(values = c("Vatnsdalsa" = "red", "Jokulsa Eystri" = "blue"))+labs(
+  title = "Caudal del río Vatnsdalsa y Jokulsa Eystri de 1972 a 1975",
+  x = "Tiempo",
+  y = "Caudal (cms)",
+  colour="Río")
+
+ggsave('figs/Ejercicio6.pdf')
 ```
 
 
