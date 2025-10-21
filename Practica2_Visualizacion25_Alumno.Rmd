@@ -11,6 +11,9 @@ output:
     toc_depth: 3
     number_sections: no
 ---
+```{r}
+rm(list=ls())
+```
 
 ```{r setup, cache = F, echo = F, message = F, warning = F, tidy = F}
 # CONFIGURACIÓN GENERAL
@@ -157,8 +160,10 @@ p2
 * Almacena en formato **pdf** el gráfico resultante en un fichero denominado ``Ejercicio1.pdf``.
 
 ```{r Solucion ejercicio 1}
-data1 <- load("./data/weatherAUS.RData")
-grafico1 <- ggplot(ds, aes(x = MinTemp, y = MaxTemp))
+load("./data/weatherAUS.RData")
+grafico1 <- ggplot(ds, aes(x = MinTemp, y = MaxTemp))+geom_point()
+grafico2 <- ggplot(ds, aes(x = MinTemp, y = MaxTemp, color = RainTomorrow))+geom_point()
+grafico3 <- grafico2 + ggtitle("Ejercicio 1")
 ggsave('figs/Ejercicio1.pdf')
 ```
 
