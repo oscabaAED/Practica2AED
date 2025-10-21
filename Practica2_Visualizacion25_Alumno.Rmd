@@ -160,10 +160,14 @@ p2
 * Almacena en formato **pdf** el gráfico resultante en un fichero denominado ``Ejercicio1.pdf``.
 
 ```{r Solucion ejercicio 1}
+rm(list=ls())
+library(ggplot2)
+
 load("./data/weatherAUS.RData")
 grafico1 <- ggplot(ds, aes(x = MinTemp, y = MaxTemp))+geom_point()
 grafico2 <- ggplot(ds, aes(x = MinTemp, y = MaxTemp, color = RainTomorrow))+geom_point()
-grafico3 <- grafico2 + ggtitle("Ejercicio 1")
+grafico2 + scale_color_manual(values=c("blue","green"))
+grafico3 <- grafico2 + ggtitle("Relación entre temperatura máxima y mínima y probabilidad de lluvia")
 ggsave('figs/Ejercicio1.pdf')
 ```
 
@@ -176,6 +180,17 @@ ggsave('figs/Ejercicio1.pdf')
 * Almacena en formato **pdf** el gráfico resultante en un fichero denominado ``Ejercicio2.pdf``.
 
 ```{r Solucion ejercicio 2}
+grafico1 <- ggplot(ds, aes(x = Temp9am, y = Pressure9am)) + geom_point()
+grafico2 <- ggplot(ds, aes(x = Temp9am, y = Pressure9am, shape = RainToday)) + geom_point()
+grafico3 <- ggplot(ds, aes(x = Temp9am, y = Pressure9am, color = RainToday)) + geom_point()
+# En la representación por color se distinguen mejor los valores que en la representación por formas
+
+grafico4 <- ggplot(ds, aes(x = Temp9am, y = Pressure9am, color = RainToday)) + geom_point() + labs(
+  title = "Probabilidad de lluvia según condiciones meteorológicas",
+  subtitle = "Lluvia en función de temperatura y presión a las 9 AM",
+  x = "Temperatura 9 AM (ºC)",
+  y = "Presión atmosférica 9 AM (mb)",
+  colour='Lluvia')
 
 ggsave('figs/Ejercicio2.pdf')
 ```
@@ -192,6 +207,14 @@ ggsave('figs/Ejercicio2.pdf')
 * Almacena en formato **pdf** el gráfico resultante en un fichero denominado ``Ejercicio3.pdf``.
 
 ```{r Solucion ejercicio 3}
+rm(list=ls())
+
+load("./data/iris_tidy.Rdata")
+str(iris.tidy)
+iris.grafico1 <- ggplot(iris.tidy, aes(x = Species, y = Value))+geom_point()
+iris.grafico2 <- ggplot(iris.tidy, aes(x = Species, y = Value, color = Part))+geom_point()
+iris.grafico3 <- ggplot(iris.tidy, aes(x = Species, y = Value, color = Part))+geom_point() + facet_grid(Measure~.)
+iris.grafico
 
 ggsave('figs/Ejercicio3.pdf') # se almacena el último gráfico generado
 ```
