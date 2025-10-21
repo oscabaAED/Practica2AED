@@ -214,7 +214,11 @@ str(iris.tidy)
 iris.grafico1 <- ggplot(iris.tidy, aes(x = Species, y = Value))+geom_point()
 iris.grafico2 <- ggplot(iris.tidy, aes(x = Species, y = Value, color = Part))+geom_point()
 iris.grafico3 <- ggplot(iris.tidy, aes(x = Species, y = Value, color = Part))+geom_point() + facet_grid(Measure~.)
-iris.grafico
+iris.grafico4 <- ggplot(iris.tidy, aes(x = Species, y = Value, color = Part))+geom_point() + facet_grid(.~Measure)
+# La disposición por columnas es mejor para comparar valores
+
+iris.grafico5 <- ggplot(iris.tidy, aes(x = Species, y = Value, color = Part))+geom_jitter()
+# Con geom_jitter los puntos tienen cierto ruido para observar mejor aquellos que caen en el mismo sitio, dando mejor idea de las cantidades de puntos.
 
 ggsave('figs/Ejercicio3.pdf') # se almacena el último gráfico generado
 ```
