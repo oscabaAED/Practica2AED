@@ -357,7 +357,12 @@ Añadir barras de error a un gráfico de línea.
 * Almacena en formato **pdf** el gráfico resultante en un fichero denominado ``Ejercicio5.pdf``.
 
 ```{r Solucion ejercicio 5}
+load("./data/Experimento.Rdata")
 
+ggplot(Experimento, aes(x=Dosis, y=Altura, shape=Complemento, linetype=Complemento))+geom_line()
+
+ggplot(Experimento, aes(x=Dosis, y=Altura, shape=Complemento, linetype=Complemento))+geom_line()+
+  geom_errorbar(aes(ymin=Altura-Error_Altura, ymax=Altura+Error_Altura), width=.1, position=position_dodge(0.05))
 
 ```
 
