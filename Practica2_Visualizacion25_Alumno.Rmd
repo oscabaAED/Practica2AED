@@ -557,10 +557,16 @@ ggplot(df, aes(x = HEIGHT)) + geom_histogram(fill = "blue", color = "red", alpha
     x = "Altura (cm)",
     y = "Frecuencia")
 
-ggplot(df, aes(x = HEIGHT)) + geom_histogram(fill = "blue", color = "red", alpha = 0.5, breaks = seq(155, 195, length.out = 21)) + labs(
+ggplot(df, aes(x = HEIGHT)) + geom_histogram(aes(y = ..density..), fill = "blue", color = "red", alpha = 0.5, breaks = seq(155, 195, length.out = 21)) + geom_density(col="green") + labs(
     title = "Histograma de la variable Altura",
     x = "Altura (cm)",
     y = "Frecuencia")
+
+ggplot(df, aes(x = HEIGHT)) + geom_histogram(aes(y = ..density..), fill = "blue", color = "red", alpha = 0.5, breaks = seq(155, 195, length.out = 21)) + geom_density(col="green") + labs(
+    title = "Histograma de la variable Altura",
+    x = "Altura (cm)",
+    y = "Frecuencia"
+    ) + facet_grid(~MORT)
 
 ggsave('figs/Ejercicio8.pdf')
 ```
